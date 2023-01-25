@@ -1,0 +1,52 @@
+------------------HERE ARE SOME TEST CASES FOR MY FINAL PROJECT-------------------
+MOV S0, 2
+MOV S1, 8  //I want to show that i can write commnet without any problem
+ADD S2, S0, S1
+DUMP_REGS
+EXIT
+-------------------------------------
+// upper to lower 
+input 
+andi S1, S0, 10
+or S2, S1, S0
+xori S3, S0, 6
+swp S0, S3
+subi S4, S3, 5
+output
+exit
+-------------------------------------
+// guide /sqrt/sqrti/push/pop/mull/div/git/nico
+-------------------------------------
+INPUT 
+MOV S1, 7
+ADD S2, S1, S0
+SWP S2, S0
+SUB S4, S1, S2
+OUTPUT
+GUIDE
+EXIT
+-------------------------------------
+MOV S0, 5
+MOV S2, 9  
+MOV S1, 7
+MOV S3, 7
+JMP 6
+MOV S3, 85 
+SWP S2, S0 
+ADD S5, S1, S0 
+DUMP_REGS 
+EXIT
+-------------------------------------
+MOV S0, 5
+MOV S2, 9  
+MOV S1, 7
+MOV S3, 7
+NICO S1, S3
+MOV S3, 85
+XORI S4, S3, 16
+OR S5, S4, S2
+XOR S6, S5, S4
+SWP S6, S2  
+DUMP_REG_F
+EXIT
+-------------------------------------
