@@ -50,3 +50,15 @@ SWP S6, S2
 DUMP_REG_F
 EXIT
 -------------------------------------
+MOV S1, 4
+MOV S0, 7
+ADD S3, S0, S1
+MOV S5, S3
+MOV S8, 9
+SUB S4, S8, S1
+JMP 11
+OUTPUT
+ADDI S10, S4, 6
+ADD S0, S6, S4
+DUMP_REGS
+EXIT
