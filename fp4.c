@@ -8,7 +8,7 @@ int x, y, z, counter = 0;
 char vaziat[8];
 int i;
 char command[1024];
-char a[100], b[100]; // b vase jump dobareh tariif kardam
+char a[100], b[100], c[100]; // b vase jump dobareh tariif kardam
 char cs[100];
 char cd[100];
 FILE *stream;
@@ -45,10 +45,11 @@ void POP(int x);
 // JUST FOR STACK
 int main()
 {
-    char file_name[100];
-    // printf("please give me your TXT file name : ");
-    // scanf("%s", file_name);
-    // printf("dorost kar mikoneh");
+    // char file_name[25];
+    // strcpy(file_name, argv[1]);
+    //  printf("please give me your TXT file name : ");
+    //  scanf("%s", file_name);
+    //  printf("dorost kar mikoneh");
     int count = 0, count1 = 0;
     stream = fopen("database.txt", "r");
     // stream = fopen(file_name, "r");
@@ -92,11 +93,10 @@ int main()
         {
             a[i] = command[i];
         }
-        // printf("%s\n", a); // to show commands line by line
+     //   printf("%s\n", a); // to show commands line by line
         if (strcmp(a, "DIV") == 0)
         {
             sscanf(command, "DIV S%d, S%d", &x, &y);
-            printf("salam");
             printf("%d", public[x] / public[y]);
             // DIV(x, y);
         }
@@ -564,8 +564,9 @@ int main()
             sscanf(command, "JMP %d", &x);
             fclose(stream);
             int target = x;
-            int place = 0;
+            int place = 1; // because jump will start from 1 not 0
             FILE *jump = fopen("database.txt", "r");
+            // FILE *jump = fopen(file_name, "r");
             while (EOF != fscanf(jump, "%[^\n]\n", command))
             {
                 place++;
@@ -670,7 +671,6 @@ int main()
                         {
                             sscanf(command, "MOV S%d, %d", &x, &y);
                             MOV1(x, y);
-                            printf("1\n");
                         }
                     }
                     else if (strcmp(cs, "SWP") == 0)
@@ -680,7 +680,6 @@ int main()
                     }
                     else if (strcmp(cs, "DUMP_REGS") == 0)
                     {
-                        printf("kfdka");
                         DUMP_REGS();
                     }
                     else if (strcmp(cs, "DUMP_REG_F") == 0)
@@ -701,6 +700,10 @@ int main()
                         fclose(jump);
                         return 0;
                     }
+                    for (int i = 0; i < 100; i++)
+                    {
+                        a[i] = c[i];
+                    }
                 }
             }
             fclose(jump);
@@ -710,6 +713,10 @@ int main()
         else
         {
             printf("Unknown Command");
+        }
+        for (int i = 0; i < 100; i++)
+        {
+            a[i] = c[i];
         }
     }
     fclose(stream);
@@ -873,7 +880,7 @@ void DUMP_REGS()
 {
     for (int i = 0; i < 32; i++)
     {
-        // printf("%ld", public[i]);
+       
         printf("{%d : %d} ", i, public[i]);
     }
     for (int i = 0; i < 8; i++)
@@ -897,11 +904,11 @@ void INPUT()
 {
     printf("please give me your S0 : ");
     scanf("%d", &public[0]);
-    // printf("%ld", public[0]);
+  
 }
 void OUTPUT()
 {
-    printf("%d", public[0]);
+    printf("YOUR S0 IS : %d\n",public[0]);
 }
 void PUSH(int x)
 {
@@ -969,8 +976,17 @@ void DIV(unsigned x, unsigned y)
 void MULL(int x, int y)
 {
     int mull = public[x] * public[y];
-    public[x] = mull + 4;
-    public[y] = mull - 4;
+    i = 0;
+    char mull_char[32];
+    while (mull != 0)
+    {
+        mull_char[i] = mull % 2;
+        mull /= 2;
+        i++;
+    }
+    public[x] = mull >> (i - 4);
+    public[y] = mull & 15;
+
     // CHECKING OVERFLOW
     if (public[x] > 0 && public[y] > 0 && mull < 0)
     {
