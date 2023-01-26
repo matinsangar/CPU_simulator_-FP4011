@@ -5,15 +5,6 @@ ADD S2, S0, S1
 DUMP_REGS
 EXIT
 -------------------------------------
-// upper to lower 
-input 
-andi S1, S0, 10
-or S2, S1, S0
-xori S3, S0, 6
-swp S0, S3
-subi S4, S3, 5
-output
-exit
 -------------------------------------
 // guide /sqrt/sqrti/push/pop/mull/div/git/nico
 -------------------------------------
