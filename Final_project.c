@@ -42,7 +42,6 @@ long stack[32];
 int dish = -1;
 void PUSH(int x);
 void POP(int x);
-// JUST FOR STACK
 int main()
 {
     // char file_name[25];
