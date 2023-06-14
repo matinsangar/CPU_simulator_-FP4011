@@ -48,7 +48,6 @@ int main()
     // strcpy(file_name, argv[1]);
     //  printf("please give me your TXT file name : ");
     //  scanf("%s", file_name);
-    //  printf("dorost kar mikoneh");
     int count = 0, count1 = 0;
     stream = fopen("database.txt", "r");
     // stream = fopen(file_name, "r");
